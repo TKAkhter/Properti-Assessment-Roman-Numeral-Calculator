@@ -63,12 +63,13 @@ export default function calculateNumberToRoman(input: any, setError: any) {
     }
   }
 
-  // Finally, output the text
+  // Finally, output the text and empty error
   setError("");
   return output;
 }
 
 export function generateRomanData() {
+  // Generate Numeral values as array. we can add upto 1 Million but since our requirement is 1000.
   let data = [];
   data[1] = "I";
   data[5] = "V";

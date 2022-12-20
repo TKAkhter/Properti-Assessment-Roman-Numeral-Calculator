@@ -8,7 +8,9 @@ export default function Form() {
   const [roman, setRoman] = useState("");
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
+    // Prevents Page from reloading
     event.preventDefault();
+    // get roman numeral value and save it in roman state
     setRoman(calculateNumberToRoman(number, setError)!);
   };
 
@@ -24,6 +26,7 @@ export default function Form() {
           placeholder="Enter Number..."
           onChange={(e) => setNumber(e.target.value)}
         />
+        {/* check if error is present before render and add styles based on error state using terary operator */}
         <p className={error ? styles.inputError : styles.displayNone}>{error ? error : null}</p>
         <input className={styles.inputButton} type="submit" />
       </div>
