@@ -26,12 +26,12 @@ export default function calculateNumberToRoman(input: any, setError: any) {
   for (let key in input) {
     // Get the actual digit as an integer so we can use it
     let number = parseInt(input[key]);
-
+    let keyInt = parseInt(key);
     // If the number is bigger than 0, we got work to do...
     while (number > 0) {
       // Get the placement of the number, which decimal place are we in?
       // 4th place: 1000, 2nd place: 10, last digit: 1
-      let numberOffset = Math.pow(10, input.length - key - 1);
+      let numberOffset = Math.pow(10, input.length - keyInt - 1);
 
       // If we have a 9, we do the next 10 minus the 1.
       // 90 = C(100) - X(10) = XC
