@@ -8,13 +8,13 @@ export default function calculateNumberToRoman(input: any, setError: any) {
   }
 
   // Check for anything that is not a numerical value
-  if(input.match(/^[0-9]+$/) === null) {
+  if (input.match(/^[0-9]+$/) === null) {
     setError("The number contains letter or special character");
     return;
   }
 
   // Romans can handle anything lesser than 4 million but as per requirement we set a limit to 1000
-  if (input > 1000) {
+  if (input > process.env.INPUT_LIMIT) {
     setError("The number should be between 1 and 1000 inclusive");
     return;
   }
@@ -78,5 +78,11 @@ export function generateRomanData() {
   data[100] = "C";
   data[500] = "D";
   data[1000] = "M";
+  data[5000] = 'V̅';
+  data[10000] = 'X̅';
+  data[50000] = 'L̅';
+  data[100000] = 'C̅';
+  data[500000] = 'D̅';
+  data[1000000] = 'M̅';
   return data;
 }
