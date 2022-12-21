@@ -1,37 +1,37 @@
-export default function calculateNumberToRoman(input: any, setError: any) {
+export default function calculateNumberToRoman(input: string, setError: (arg0: string) => void ) {
   let data = generateRomanData();
+
+  // Make a variable to contain the output, we will add to this
+  let output = "";
 
   // Check for decimal points and negative since they cannot be in roman numerals
   if (input.indexOf(".") != -1 || input.indexOf("-") != -1) {
     setError("Roman numerals can not have decimal or negative values")
-    return;
+    return output;
   }
 
   // Check for anything that is not a numerical value
   if (input.match(/^[0-9]+$/) === null) {
     setError("The number contains letter or special character");
-    return;
+    return output;
   }
 
   // Romans can handle anything lesser than 4 million but as per requirement we set a limit to 1000
-  if (input > process.env.INPUT_LIMIT) {
+  if (parseInt(input) > process.env.INPUT_LIMIT) {
     setError("The number should be between 1 and 1000 inclusive");
-    return;
+    return output;
   }
 
-  // Make a variable to contain the output, we will add to this
-  let output = "";
-
   // Go through each digit from left to right
-  for (let key in input) {
+  for (var key = 0; key < input.length; key++) {
+  // for (let key in input) {
     // Get the actual digit as an integer so we can use it
     let number = parseInt(input[key]);
-    let keyInt = parseInt(key);
     // If the number is bigger than 0, we got work to do...
     while (number > 0) {
       // Get the placement of the number, which decimal place are we in?
       // 4th place: 1000, 2nd place: 10, last digit: 1
-      let numberOffset = Math.pow(10, input.length - keyInt - 1);
+      let numberOffset = Math.pow(10, input.length - key - 1);
 
       // If we have a 9, we do the next 10 minus the 1.
       // 90 = C(100) - X(10) = XC
